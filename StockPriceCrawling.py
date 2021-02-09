@@ -16,3 +16,9 @@ web_content = web_content.find('span').text
 
    if web_content ==[]:
       web_content= '99999'
+   
+   return web_content
+      
+ 
+web_content=real_time_price('0001')
+print(web_content)
