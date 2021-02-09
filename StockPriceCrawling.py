@@ -22,8 +22,7 @@ web_content = web_content.find('span').text
    return web_content
       
  
-web_content=real_time_price('0001')
-print(web_content)
+HSI = ['0001', '0002', '0003', '0004']
 
 for step in range(1,101): //100 steps
     price=[]
