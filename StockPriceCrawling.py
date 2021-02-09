@@ -30,7 +30,8 @@ for step in range(1,101): //100 steps
     col =[]
     times_stamp=datetime.datetime.now()
     times_stamp=times_stamp.strftime("%Y-%m-%d %H:%M:%S")
-    price.append(real_time_price('0001')
+    for stock_code in HSI:
+        price.append(real_time_price('0001')
     col=[time_stamp]
     col.extend(price)
     
