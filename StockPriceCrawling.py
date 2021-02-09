@@ -1,3 +1,5 @@
+import pandas as pd
+import datetime
 install requests
 
 from bs4 install BeautifulSoup
