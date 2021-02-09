@@ -20,3 +20,20 @@ def animate(i):
     ax1.clear()
     ax1.plot(xs, ys)
     ax1.set_title('CKH Holdings', fontsize=12)
+    
+    ys = df.iloc[1:, 3].values
+    ax2.clear()
+    ax2.plot(xs, ys)
+    ax2.set_title('CLP Holdings', fontsize=12)
+
+
+    ys = df.iloc[1:, 4].values
+    ax3.clear()
+    ax3.plot(xs, ys)
+    ax3.set_title('HK & China Gas', fontsize=12)
+
+
+    ys = df.iloc[1:, 5].values
+    ax4.clear()
+    ax4.plot(xs, ys)
+    ax4.set_title('HSBC Holdings', fontsize=12)
