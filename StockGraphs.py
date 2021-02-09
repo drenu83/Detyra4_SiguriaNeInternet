@@ -32,8 +32,14 @@ def animate(i):
     ax3.plot(xs, ys)
     ax3.set_title('HK & China Gas', fontsize=12)
 
-
+    
     ys = df.iloc[1:, 5].values
     ax4.clear()
     ax4.plot(xs, ys)
     ax4.set_title('HSBC Holdings', fontsize=12)
+    
+    
+ani= animation.funAnimation(fig, animate, interval = 1000)
+
+plt.tight_layout()
+plt.show()    
