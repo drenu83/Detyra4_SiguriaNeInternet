@@ -33,4 +33,21 @@ for step in range(1,101): //100 steps
     price.append(real_time_price('0001')
     col=[time_stamp]
     col.extend(price)
+    
+    df=pd.DateFrame(col)
+    df=df.T
+    df.to_csv('real time stock data.csv', mode='a', header=False)
+    print(col)
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
+                 
                
