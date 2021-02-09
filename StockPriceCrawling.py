@@ -22,3 +22,7 @@ web_content = web_content.find('span').text
  
 web_content=real_time_price('0001')
 print(web_content)
+
+for step in range(1,101): //100 steps
+    price=[]
+    col =[]
