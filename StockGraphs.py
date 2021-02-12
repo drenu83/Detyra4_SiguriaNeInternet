@@ -2,23 +2,21 @@ from tkinter import *
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,
+                                               NavigationToolbar2Tk)
 from matplotlib.figure import Figure
 from matplotlib import style
 
-def Figure():
-    #fig = plt.figure()
-    axes = []
-    fig = Figure(figsize = (5,5),
-                 dpi = 100)
-    ax1 = fig.add_subplot(2, 2, 1)
-    ax2 = fig.add_subplot(2, 2, 2)
-    ax3 = fig.add_subplot(2, 2, 3)
-    ax4 = fig.add_subplot(2, 2, 4)
-    axes.append(ax1,ax2,ax3,ax4)
-    return axes
+
+fig = Figure(figsize=(6, 6),
+             dpi=100)
+ax1 = fig.add_subplot(2, 2, 1)
+ax2 = fig.add_subplot(2, 2, 2)
+ax3 = fig.add_subplot(2, 2, 3)
+ax4 = fig.add_subplot(2, 2, 4)
 
 
-def animate(i):
+def animate():
     df = pd.read_csv('real time stock data.csv')
     ys = df.iloc[1:, 2].values
     xs = list(range(1, len(ys) + 1))
@@ -41,11 +39,21 @@ def animate(i):
     ax4.plot(xs, ys)
     ax4.set_title('HSBC Holdings', fontsize=12)
 
+    canvas = FigureCanvasTkAgg(fig, master=window)
 
-#ani = animation.FuncAnimation(fig, animate, interval=1000)
+    toolbar = NavigationToolbar2Tk(canvas,
+                                   window)
 
-#plt.tight_layout()
-#plt.show()
+    toolbar.update()
+
+    canvas.get_tk_widget().pack()
+
+
+
+ani = animation.FuncAnimation(fig, animate, interval=1000)
+
+# plt.tight_layout()
+# plt.show()
 
 window = Tk()
 
@@ -54,6 +62,7 @@ window.title('Stock Prices')
 window.geometry('500x500')
 
 stock_button = Button(master=window,
+                      command=animate,
                       height=2,
                       width=10,
                       text="Show Stocks")
@@ -61,6 +70,5 @@ stock_button = Button(master=window,
 stock_button.pack()
 
 window.mainloop()
-
 
 style.use('fivethirtyeight')
