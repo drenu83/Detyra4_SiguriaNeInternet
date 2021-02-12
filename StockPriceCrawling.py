@@ -1,53 +1,40 @@
 import pandas as pd
 import datetime
-install requests
 
-from bs4 install BeautifulSoup
+import requests
 
-
-url = ('https://finance.yahoo.com/quote/') +stock_code + ('.HK?p=') + stock_code + ('.HK&.tsrc=fin-srch')
-r=requests.get(url)
-
-print=(r.text) //Te dhenat shfaqe sikur xml
-
-web_content = BeautifulSoup(r.text, 'lxml')
-web_content = web_content.find('div', {"class" : 'My(6px) Pos(r) smartphone_Mt(6px)'})
-web_content = web_content.find('span').text
+from bs4 import BeautifulSoup
 
 
+def real_time_price(stock_code):
+    url = 'https://finance.yahoo.com/quote/' + stock_code + '.HK?p=' + stock_code + '.HK&.tsrc=fin-srch'
+    r = requests.get(url)
 
-   if web_content ==[]:
-      web_content= '99999'
-   
-   return web_content
-      
- 
+    # print(r.text) #Te dhenat shfaqe sikur xml
+
+    web_content = BeautifulSoup(r.text, 'lxml')
+    web_content = web_content.find('div', {"class": 'My(6px) Pos(r) smartphone_Mt(6px)'})
+    web_content = web_content.find('span').text
+
+    if not web_content:
+        web_content = '99999'
+
+    return web_content
+
+
 HSI = ['0001', '0002', '0003', '0004']
 
-for step in range(1,101): //100 steps
-    price=[]
-    col =[]
-    times_stamp=datetime.datetime.now()
-    times_stamp=times_stamp.strftime("%Y-%m-%d %H:%M:%S")
+for step in range(1, 101):  # 100 steps
+    price = []
+    col = []
+    time_stamp = datetime.datetime.now()
+    time_stamp = time_stamp.strftime("%Y-%m-%d %H:%M:%S")
     for stock_code in HSI:
-        price.append(real_time_price(stock_code)
-    col=[time_stamp]
+        price.append(real_time_price(stock_code))
+    col = [time_stamp]
     col.extend(price)
-    
-    df=pd.DateFrame(col)
-    df=df.T
+
+    df = pd.DataFrame(col)
+    df = df.T
     df.to_csv('real time stock data.csv', mode='a', header=False)
     print(col)
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-                 
-               
