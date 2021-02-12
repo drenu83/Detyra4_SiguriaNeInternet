@@ -2,14 +2,20 @@ from tkinter import *
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+from matplotlib.figure import Figure
 from matplotlib import style
 
-
-fig = plt.figure()
-ax1 = fig.add_subplot(2, 2, 1)
-ax2 = fig.add_subplot(2, 2, 2)
-ax3 = fig.add_subplot(2, 2, 3)
-ax4 = fig.add_subplot(2, 2, 4)
+def Figure():
+    #fig = plt.figure()
+    axes = []
+    fig = Figure(figsize = (5,5),
+                 dpi = 100)
+    ax1 = fig.add_subplot(2, 2, 1)
+    ax2 = fig.add_subplot(2, 2, 2)
+    ax3 = fig.add_subplot(2, 2, 3)
+    ax4 = fig.add_subplot(2, 2, 4)
+    axes.append(ax1,ax2,ax3,ax4)
+    return axes
 
 
 def animate(i):
