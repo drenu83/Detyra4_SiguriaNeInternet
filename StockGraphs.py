@@ -1,9 +1,9 @@
+from tkinter import *
 import pandas as pd
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 from matplotlib import style
 
-style.use('fivethirtyeight')
 
 fig = plt.figure()
 ax1 = fig.add_subplot(2, 2, 1)
@@ -36,7 +36,25 @@ def animate(i):
     ax4.set_title('HSBC Holdings', fontsize=12)
 
 
-ani = animation.FuncAnimation(fig, animate, interval=1000)
+#ani = animation.FuncAnimation(fig, animate, interval=1000)
 
-plt.tight_layout()
-plt.show()
+#plt.tight_layout()
+#plt.show()
+
+window = Tk()
+
+window.title('Stock Prices')
+
+window.geometry('500x500')
+
+stock_button = Button(master=window,
+                      height=2,
+                      width=10,
+                      text="Show Stocks")
+
+stock_button.pack()
+
+window.mainloop()
+
+
+style.use('fivethirtyeight')
