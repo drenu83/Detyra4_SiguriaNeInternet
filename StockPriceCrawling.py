@@ -1,3 +1,5 @@
+import time
+
 import pandas as pd
 import datetime
 
@@ -10,7 +12,7 @@ def real_time_price(stock_code):
     url = 'https://finance.yahoo.com/quote/' + stock_code + '.HK?p=' + stock_code + '.HK&.tsrc=fin-srch'
     r = requests.get(url)
 
-    # print(r.text) #Te dhenat shfaqe sikur xml
+    print(r.text) #Te dhenat shfaqe sikur xml
 
     web_content = BeautifulSoup(r.text, 'lxml')
     web_content = web_content.find('div', {"class": 'My(6px) Pos(r) smartphone_Mt(6px)'})
@@ -30,7 +32,9 @@ for step in range(1, 101):  # 100 steps
     time_stamp = datetime.datetime.now()
     time_stamp = time_stamp.strftime("%Y-%m-%d %H:%M:%S")
     for stock_code in HSI:
-        price.append(real_time_price(stock_code))
+        #price.append(real_time_price(stock_code))
+        price.append(step)
+        time.sleep(2)
     col = [time_stamp]
     col.extend(price)
 
