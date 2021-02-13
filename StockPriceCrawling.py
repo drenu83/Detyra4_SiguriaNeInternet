@@ -9,11 +9,8 @@ from bs4 import BeautifulSoup
 
 
 def real_time_price(stock_code):
-    url = 'https://finance.yahoo.com/quote/%' + stock_code + '?p=%' + stock_code
-    # url = 'https://finance.yahoo.com/quote/' + stock_code + '.HK?p=' + stock_code + '.HK&.tsrc=fin-srch' # Old Stocks
+    url = 'https://finance.yahoo.com/quote/' + stock_code + '.HK?p=' + stock_code + '.HK&.tsrc=fin-srch'
     r = requests.get(url)
-
-    #print(r.text)  # Te dhenat shfaqe sikur xml
 
     web_content = BeautifulSoup(r.text, 'lxml')
     web_content = web_content.find('div', {"class": 'My(6px) Pos(r) smartphone_Mt(6px)'})
@@ -22,11 +19,11 @@ def real_time_price(stock_code):
     if not web_content:
         web_content = '99999'
 
+
     return web_content
 
 
-HSI = ['5EIXIC', '5EDJI', '5EGSPC', '5ERUT']
-
+HSI = ['0001', '0002', '0003', '0004']
 for step in range(1, 101):  # 100 steps
     price = []
     col = []
@@ -34,8 +31,6 @@ for step in range(1, 101):  # 100 steps
     time_stamp = time_stamp.strftime("%Y-%m-%d %H:%M:%S")
     for stock_code in HSI:
         price.append(real_time_price(stock_code))
-        # price.append(step) #testing the
-        # time.sleep(2)      #animation
     col = [time_stamp]
     col.extend(price)
 

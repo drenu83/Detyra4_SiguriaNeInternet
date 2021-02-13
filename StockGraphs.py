@@ -12,7 +12,7 @@ style.use('fivethirtyeight')
 fig = Figure(figsize=(100, 100),
              dpi=70)
 
-# fig = plt.figure()
+
 ax1 = fig.add_subplot(2, 2, 1)
 ax2 = fig.add_subplot(2, 2, 2)
 ax3 = fig.add_subplot(2, 2, 3)
@@ -59,20 +59,5 @@ canvas.get_tk_widget().pack()
 
 ani = animation.FuncAnimation(fig, animate, interval=1000)
 plt.tight_layout()
-# plt.show()
-
-# window = Tk()
-
-# window.title('Stock Prices')
-
-# window.geometry('500x500')
-
-# stock_button = Button(master=window,
-#                      command=animate,
-#                      height=2,
-#                      width=10,
-#                      text="Show Stocks")
-
-# stock_button.pack()
 
 window.mainloop()
