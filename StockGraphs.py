@@ -7,13 +7,12 @@ from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg,
 from matplotlib.figure import Figure
 from matplotlib import style
 
-
 style.use('fivethirtyeight')
 
-#fig = Figure(figsize=(10, 10),
-#             dpi=70)
+fig = Figure(figsize=(100, 100),
+             dpi=70)
 
-fig = plt.figure()
+# fig = plt.figure()
 ax1 = fig.add_subplot(2, 2, 1)
 ax2 = fig.add_subplot(2, 2, 2)
 ax3 = fig.add_subplot(2, 2, 3)
@@ -43,19 +42,24 @@ def animate(i):
     ax4.plot(xs, ys)
     ax4.set_title('HSBC Holdings', fontsize=12)
 
-    # canvas = FigureCanvasTkAgg(fig, master=window)
 
-    # toolbar = NavigationToolbar2Tk(canvas,
-    #                               window)
+window = Tk()
 
-    # toolbar.update()
+window.title('Stock Prices')
 
-    # canvas.get_tk_widget().pack()
+window.geometry('500x500')
 
+canvas = FigureCanvasTkAgg(fig, master=window)
+
+toolbar = NavigationToolbar2Tk(canvas,
+                               window)
+toolbar.update()
+
+canvas.get_tk_widget().pack()
 
 ani = animation.FuncAnimation(fig, animate, interval=1000)
 plt.tight_layout()
-plt.show()
+# plt.show()
 
 # window = Tk()
 
@@ -71,6 +75,4 @@ plt.show()
 
 # stock_button.pack()
 
-# window.mainloop()
-
-
+window.mainloop()
